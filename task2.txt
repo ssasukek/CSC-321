@@ -1,0 +1,53 @@
+Hi All, here are some Module 2 Block Cipher Assignment Hints for Task 2
+Oracle Functions Implementation:
+a. submit() function:
+Input: Arbitrary user string
+Process:
+Prepend "userid=456;userdata="
+Append ";session-id=31337"
+URL encode ';' and '=' in user input
+Apply PKCS#7 padding
+Encrypt using AES-128-CBC
+Output: Ciphertext
+b. verify() function:
+Input: Ciphertext
+Process:
+Decrypt ciphertext
+Remove padding
+Search for ";admin=true;" pattern
+Output: Boolean (true if pattern found, false otherwise)
+Cryptographic Components:
+Generate and maintain constant AES-128 key and IV
+Implement CBC mode encryption and decryption
+Use PKCS#7 padding from Task 1
+String Manipulation and Encoding:
+Implement URL encoding for ';' and '='
+Handle string concatenation for prepending and appending
+CBC Mode Understanding:
+Grasp the block chaining mechanism in CBC
+Recognize how each plaintext block is XORed with the previous ciphertext block before encryption
+Bit-Flipping Attack:
+Objective: Modify ciphertext to inject ";admin=true;" into the plaintext
+Technique: a. Identify the block where the injection should occur b. Determine the desired changes in the plaintext c. Calculate necessary changes in the previous ciphertext block
+Process:
+Locate the block boundary just before the target injection point
+Modify bytes in this ciphertext block
+These modifications will cause predictable changes in the next plaintext block due to CBC properties
+Example:
+If block Ci is modified, it affects plaintext block Pi+1
+To change byte j in Pi+1 from value A to B:
+XOR byte j in Ci with (A XOR B)
+Repeat for each byte needed to inject ";admin=true;"
+Attack Implementation:
+Create a function to perform the bit-flipping attack
+Inputs: Original ciphertext, desired injection string
+Process:
+Determine injection point
+Calculate necessary ciphertext modifications
+Apply modifications to the ciphertext
+Output: Modified ciphertext
+Verification and Testing:
+Test submit() function with various inputs
+Verify that normal inputs never produce ";admin=true;"
+Implement and test the bit-flipping attack
+Confirm that verify() returns true for the modified ciphertext
