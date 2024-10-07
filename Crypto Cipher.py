@@ -85,8 +85,8 @@ def decrypt_image(file, mode, key = None, iv = None):
     elif mode == 'CBC':
         prev = iv
         for block in blocks:
-            decripted_block = cipher.decrypt(block)
-            first_block = bytes([x ^ y for x, y in zip(decripted_block, prev)])
+            decrypted_block = cipher.decrypt(block)
+            first_block = bytes([x ^ y for x, y in zip(decrypted_block, prev)])
             combine += first_block
             prev = block
 
