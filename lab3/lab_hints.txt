@@ -1,0 +1,55 @@
+Public Key Cryptography Implementation
+Task 1 part 1 Hint
+Implement Diffie-Hellman Key Exchange
+here are some def's that you will need
+generate_private_key
+compute_public_key
+compute_shared_secret
+derive_key
+encrypt_message
+decrypt_message
+diffie_hellman_protocol
+
+Task 1 part 2 Hint
+use some “real life” numbers. IETF suggestion
+generate_private_key
+compute_public_key # The pow() function allows you to calculate the power of a number and perform modular exponentiation.
+compute_shared_secret
+derive_key
+encrypt_message
+decrypt_message
+diffie_hellman_protocol
+
+
+Task 2: Part 1 Implement MITM key fixing
+generate_private_key
+compute_public_key # The pow() function allows you to calculate the power of a number and perform modular exponentiation.
+compute_shared_secret
+derive_key
+encrypt_message
+decrypt_message
+mitm_key_fixing_attack
+
+Task 2: Part 2
+Show that Mallory can recover the messages 𝑚0 and 𝑚1 from their ciphertexts by setting alpha to 1, q, or q-1.
+enerate_private_key
+compute_public_key # The pow() function allows you to calculate the power of a number and perform modular exponentiation.
+compute_shared_secret
+derive_key
+encrypt_message
+decrypt_message
+mitm_generator_attack
+
+
+Task 3: Implement “textbook” RSA & MITM Key Fixing via Malleability
+Malleability in cryptography refers to the ability to modify encrypted data in a meaningful way without decrypting it first.
+Key fixing in cryptography means forcing or manipulating the outcome of a key negotiation process.
+here are some def's
+generate_prime
+mod_inverse
+generate_keypair
+encrypt
+decrypt
+string_to_int
+int_to_string
+test_rsa
