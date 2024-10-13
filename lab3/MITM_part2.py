@@ -17,13 +17,15 @@ q = int("B10B8F96A080E01DDE92DE5EAE5D54EC52C99FBC"
         "0DC8B4BD45BF37DF365C1A65E68CFDA76D4DA708"
         "DF1FB2BC2E4A4371", 16)
 
-g = int("A4D1CBD5C3FD34126765A442EFB99905F8104DD2"
-        "58AC507FD6406CFF14266D31266FEA1E5C41564B"
-        "777E690F5504F213160217B4B01B886A5E91547F" 
-        "9E2749F4D7FBD7D3B9A92EE1909D0D2263F80A76"
-        "A6A24C087A091F531DBF0A0169B6A28AD662A4D1"
-        "8E73AFA32D779D5918D08BC8858F4DCEF97C2A24"
-        "855E6EEB22B3B2E5", 16)
+# g = int("A4D1CBD5C3FD34126765A442EFB99905F8104DD2"
+#         "58AC507FD6406CFF14266D31266FEA1E5C41564B"
+#         "777E690F5504F213160217B4B01B886A5E91547F" 
+#         "9E2749F4D7FBD7D3B9A92EE1909D0D2263F80A76"
+#         "A6A24C087A091F531DBF0A0169B6A28AD662A4D1"
+#         "8E73AFA32D779D5918D08BC8858F4DCEF97C2A24"
+#         "855E6EEB22B3B2E5", 16)
+
+g = 1
 
 
 # name of the attacker
@@ -67,9 +69,8 @@ def diffie_hellman_protocol():
     b_public_key = computing_public_key(g, b_private_key, q)
 
     # shared key betwwen alice and bob
-    # mallory sends q instead of public_key
-    a_shared_secret = computing_shared_secret(q, a_private_key, q)
-    b_shared_secret = computing_public_key(q, b_private_key, q)
+    a_shared_secret = computing_shared_secret(b_public_key, a_private_key, q)
+    b_shared_secret = computing_public_key(a_public_key, b_private_key, q)
 
     # ensure they are the same share secret msg
     assert a_shared_secret == b_shared_secret
@@ -95,9 +96,8 @@ def diffie_hellman_protocol():
     print("Bob's encrypted msg to Alice:", b_encrypt_msg)
 
     # mallory computes the shared key
-    # when mallory send q instead of public key to alice and bob
-    # both of them compute s = q^a mod q which is 0
-    mal_key = computing_shared_secret(q, q, q)
+    # when mallory sets g = 1, both of them compute s = 1^a mod q which is 1
+    mal_key = computing_shared_secret(1, 1, q)
     key = derived_key(mal_key)
     a_decrypt_msg = decrypt_msg(key, a_encrypt_msg)
     b_decrypt_msg = decrypt_msg(key, b_encrypt_msg)
