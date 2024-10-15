@@ -29,16 +29,16 @@ g = 1
 
 
 # name of the attacker
-class Mallory:
-    # YA
-    def intercept_a_public_key(self, YA):
-        print("Mallory has changed Alice's public key to q and send to Bob")
-        return q        #Bob will now recieve q instead of YA
+# class Mallory:
+#     # YA
+#     def intercept_a_public_key(self, YA):
+#         print("Mallory has changed Alice's public key to q and send to Bob")
+#         return q        #Bob will now recieve q instead of YA
     
-    # YB
-    def intercept_b_public_key(self, YB):
-        print("Mallory has changed Bob's public key to q and send to Alice")
-        return q        #Alice will now recieve q instead of YB
+#     # YB
+#     def intercept_b_public_key(self, YB):
+#         print("Mallory has changed Bob's public key to q and send to Alice")
+#         return q        #Alice will now recieve q instead of YB
 
 
 def generate_private_key(q):
